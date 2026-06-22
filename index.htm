@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camp Simcha — Jewish Life, Music & Media</title>
+    <!-- Tailwind CSS CDN for high-end layout styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display (Serif) & Inter (Sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght=0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Custom scrollbar styling for a cleaner look */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#faf8f5] text-stone-800 flex flex-col selection:bg-amber-200" id="main-body">
+
+    <!-- Brand Navigation Bar -->
+    <header id="site-header" class="bg-emerald-950 text-amber-50 border-b border-amber-800/20 sticky top-0 z-50 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="bg-amber-500 text-emerald-950 p-2.5 rounded-full shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight font-serif text-amber-100">Camp Simcha</h1>
+                    <p class="text-[10px] text-amber-400 tracking-widest uppercase font-bold">Jewish Life, Music & Media</p>
+                </div>
+            </div>
+
+            <nav class="flex items-center space-x-1 text-sm overflow-x-auto max-w-full pb-1 sm:pb-0">
+                <button id="nav-home" onclick="switchTab('home')" class="px-4 py-2 rounded-lg transition-all duration-200 font-medium bg-amber-500 text-emerald-950 font-bold shadow-sm">
+                    Home
+                </button>
+                <button id="nav-chords" onclick="switchTab('chords')" class="px-4 py-2 rounded-lg transition-all duration-200 font-medium hover:bg-emerald-900 text-stone-200">
+                    Chord Sheets
+                </button>
+                <button id="nav-recordings" onclick="switchTab('recordings')" class="px-4 py-2 rounded-lg transition-all duration-200 font-medium hover:bg-emerald-900 text-stone-200">
+                    Song Recordings
+                </button>
+                <button id="nav-slideshows" onclick="switchTab('slideshows')" class="px-4 py-2 rounded-lg transition-all duration-200 font-medium hover:bg-emerald-900 text-stone-200">
+                    Past Slideshows
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Graphic Hero Banner -->
+    <div id="site-hero" class="bg-gradient-to-br from-emerald-950 via-emerald-900 to-amber-950 text-white relative overflow-hidden py-16 transition-all duration-300">
+        <div class="absolute inset-0 opacity-5 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1" />
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10 text-center sm:text-left">
+            <span class="bg-amber-500/20 text-amber-300 text-xs font-bold tracking-wider uppercase px-3 py-1 rounded-full border border-amber-500/30">
+                Jewish Life Portal
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-black font-serif mt-3 text-amber-50 tracking-tight" id="hero-title">
+                Sing. Record. Remember.
+            </h2>
+            <p class="text-stone-300 mt-2 max-w-2xl text-base sm:text-lg" id="hero-desc">
+                Access the core resource portal for Jewish Life at Camp Simcha. Find dynamic chord sheets, listen to recorded tracks, and relive the magic of past summers.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <main id="site-main" class="flex-grow max-w-6xl w-full mx-auto px-4 py-8">
+
+        <!-- 1. HOME TAB CONTAINER -->
+        <div id="tab-content-home" class="space-y-12 block">
+            
+            <!-- Quick Navigation Cards -->
+            <div>
+                <h3 class="text-2xl font-bold text-emerald-950 font-serif mb-6 text-center sm:text-left">Explore Camp Media</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Feature 1: Chord Sheets Button -->
+                    <div onclick="switchTab('chords')" class="bg-white border border-stone-200/80 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <div class="h-12 w-12 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-stone-900 group-hover:text-emerald-800 transition-colors">Camp Chord Sheets</h4>
+                            <p class="text-stone-600 text-sm mt-2">
+                                Access our digital folder of song chords. Filtered, searchable, and formatted beautifully without any Google Drive layouts.
+                            </p>
+                        </div>
+                        <div class="mt-6 flex items-center text-emerald-800 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                            Search Songs &rarr;
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Song Recordings Button -->
+                    <div onclick="switchTab('recordings')" class="bg-white border border-stone-200/80 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <div class="h-12 w-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-stone-900 group-hover:text-emerald-800 transition-colors">Song Recordings</h4>
+                            <p class="text-stone-600 text-sm mt-2">
+                                Listen to camp favorites, recordings of our weekly Havdalah circles, and original camp instrumentals.
+                            </p>
+                        </div>
+                        <div class="mt-6 flex items-center text-emerald-800 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                            Listen Now &rarr;
+                        </div>
+                    </div>
+
+                    <!-- Feature 3: Slideshows Button -->
+                    <div onclick="switchTab('slideshows')" class="bg-white border border-stone-200/80 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group hover:-translate-y-1 flex flex-col justify-between">
+                        <div>
+                            <div class="h-12 w-12 bg-rose-100 text-rose-700 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-stone-900 group-hover:text-emerald-800 transition-colors">Past Slideshows</h4>
+                            <p class="text-stone-600 text-sm mt-2">
+                                Relive the visual summaries and creative media recap videos compiled by our summer videography teams.
+                            </p>
+                        </div>
+                        <div class="mt-6 flex items-center text-emerald-800 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                            Watch Archives &rarr;
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Quick Song Finder Widget -->
+            <div class="bg-emerald-950 text-stone-100 rounded-3xl p-8 shadow-lg relative overflow-hidden">
+                <div class="absolute right-0 bottom-0 opacity-10 translate-x-10 translate-y-10">
+                    <svg class="w-64 h-64 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+                    </svg>
+                </div>
+                <div class="relative z-10 max-w-xl">
+                    <h3 class="text-2xl font-bold text-amber-400 font-serif mb-2">Need a Chord Sheet Fast?</h3>
+                    <p class="text-sm text-emerald-200/80 mb-6">
+                        Type a song keyword or category tag below to automatically jump to the chords catalog and apply your search instantly. Can't find your song? 
+                        <button onclick="openSongRequestModal()" class="text-amber-400 hover:text-amber-300 underline font-semibold transition-colors focus:outline-none">Request it here!</button>
+                    </p>
+                    <div class="flex gap-2">
+                        <input 
+                            type="text" 
+                            id="quick-search-input"
+                            placeholder="Search e.g. 'Slow', 'Shabbat', 'Od Yavo'..."
+                            class="w-full px-4 py-3 bg-emerald-900/60 rounded-xl text-white border border-emerald-800 placeholder:text-emerald-400/60 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent text-sm"
+                        />
+                        <button 
+                            onclick="executeQuickSearch()"
+                            class="bg-amber-500 hover:bg-amber-400 text-emerald-950 font-bold px-6 py-3 rounded-xl text-sm transition-all duration-200 shadow-md">
+                            Go
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 2. CHORD SHEETS TAB CONTAINER -->
+        <div id="tab-content-chords" class="space-y-6 hidden">
+            <!-- Search & Filters Panel -->
+            <div class="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm mb-8 space-y-4">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-stone-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                        </svg>
+                    </span>
+                    <input 
+                        type="text" 
+                        id="main-search-input"
+                        onkeyup="filterSongs()"
+                        placeholder="Type a song title, tempo (e.g. 'Slow', 'Fast'), or category..."
+                        class="w-full pl-11 pr-4 py-3 bg-stone-50 rounded-xl text-stone-900 border border-stone-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+                    />
+                </div>
+
+                <!-- Dynamic tags row -->
+                <div class="flex items-center gap-2 overflow-x-auto pb-2 pt-1 scrollbar-hide">
+                    <span class="text-xs text-stone-400 uppercase font-bold mr-2 tracking-wider shrink-0">Tags:</span>
+                    <div id="tag-pills-container" class="flex gap-2">
+                        <!-- Dynamic pill buttons injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner State -->
+            <div id="chords-loading" class="hidden flex-col items-center justify-center py-20">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-950 mb-4"></div>
+                <p class="text-stone-500 text-sm">Syncing with Camp Music Folder...</p>
+            </div>
+
+            <!-- Chords Directory Grid -->
+            <div id="chords-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic cards injected here -->
+            </div>
+
+            <!-- No results state template -->
+            <div id="no-results" class="hidden bg-white border border-stone-200 rounded-2xl p-12 text-center max-w-md mx-auto shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-stone-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 115.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h4 class="text-lg font-bold text-stone-900 mb-1">No songs matched</h4>
+                <p class="text-stone-500 text-sm mb-4">We couldn't find any sheets matching that query.</p>
+                <div class="flex gap-2 justify-center">
+                    <button onclick="clearFilters()" class="bg-stone-100 text-stone-600 hover:bg-stone-200 px-5 py-2 rounded-xl text-sm font-semibold transition">
+                        Clear Filters
+                    </button>
+                    <button onclick="openSongRequestModal()" class="bg-amber-500 hover:bg-amber-450 text-emerald-950 px-5 py-2 rounded-xl text-sm font-bold shadow-sm transition">
+                        Request Song
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. RECORDINGS TAB CONTAINER -->
+        <div id="tab-content-recordings" class="space-y-6 hidden max-w-4xl mx-auto">
+            <div class="bg-white border border-stone-200 rounded-3xl p-8 text-center shadow-sm">
+                <div class="h-16 w-16 bg-amber-100 text-amber-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-stone-900 font-serif mb-3">Song Recordings Player</h3>
+                <p class="text-stone-600 text-base max-w-xl mx-auto leading-relaxed">
+                    Tune in to official Camp Simcha audio tracks, Havdalah recordings, and camper-produced melodies. Keep this browser open to play tunes seamlessly while you search chord sheets!
+                </p>
+            </div>
+
+            <!-- Pre-recorded list layout -->
+            <div class="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm space-y-4">
+                <h4 class="text-sm font-bold text-stone-400 uppercase tracking-wider mb-2">Available Playlist</h4>
+                
+                <div class="divide-y divide-stone-100">
+                    <div class="py-4 flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <button class="h-10 w-10 bg-emerald-900 text-white rounded-full flex items-center justify-center hover:bg-emerald-800 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 pl-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </button>
+                            <div>
+                                <h5 class="font-bold text-stone-900">Acheinu (Circle Session Live)</h5>
+                                <p class="text-xs text-stone-500">Live Recording — Shabbat Session 2026</p>
+                            </div>
+                        </div>
+                        <span class="text-xs text-stone-400 font-mono">4:12</span>
+                    </div>
+
+                    <div class="py-4 flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <button class="h-10 w-10 bg-emerald-900 text-white rounded-full flex items-center justify-center hover:bg-emerald-800 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 pl-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </button>
+                            <div>
+                                <h5 class="font-bold text-stone-900">Od Yavo (Upbeat Instrumental Mix)</h5>
+                                <p class="text-xs text-stone-500">Camp Studio Tracks</p>
+                            </div>
+                        </div>
+                        <span class="text-xs text-stone-400 font-mono">3:45</span>
+                    </div>
+
+                    <div class="py-4 flex items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <button class="h-10 w-10 bg-emerald-900 text-white rounded-full flex items-center justify-center hover:bg-emerald-800 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 pl-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </button>
+                            <div>
+                                <h5 class="font-bold text-stone-900">Bilvavi (Acoustic Neshama Chords)</h5>
+                                <p class="text-xs text-stone-500">Studio Session Track</p>
+                            </div>
+                        </div>
+                        <span class="text-xs text-stone-400 font-mono">5:02</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. SLIDESHOWS TAB CONTAINER -->
+        <div id="tab-content-slideshows" class="space-y-6 hidden max-w-4xl mx-auto">
+            <div class="bg-white border border-stone-200 rounded-3xl p-8 text-center shadow-sm">
+                <div class="h-16 w-16 bg-rose-100 text-rose-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-stone-900 font-serif mb-3">Past Slideshows & Videos</h3>
+                <p class="text-stone-600 text-base max-w-xl mx-auto leading-relaxed">
+                    Relive the most emotional, thrilling, and beautiful milestones from previous summers. Our media archives load instantly in high resolution.
+                </p>
+            </div>
+
+            <!-- Grid of slideshow placeholders -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="bg-white border border-stone-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="aspect-video bg-stone-950 flex items-center justify-center relative group cursor-pointer">
+                        <div class="absolute inset-0 bg-emerald-950/20 group-hover:bg-emerald-950/40 transition"></div>
+                        <button class="h-14 w-14 bg-amber-500 hover:bg-amber-450 text-emerald-950 rounded-full flex items-center justify-center shadow-lg transition transform group-hover:scale-105 z-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </button>
+                        <span class="absolute bottom-3 right-3 bg-stone-900/80 text-white text-[10px] font-bold px-2 py-1 rounded">12:34</span>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-bold text-stone-900">Summer Session Grand Finale</h4>
+                        <p class="text-xs text-stone-500 mt-1">End of Summer Recap — Camp Simcha Media Team</p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-stone-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="aspect-video bg-stone-950 flex items-center justify-center relative group cursor-pointer">
+                        <div class="absolute inset-0 bg-emerald-950/20 group-hover:bg-emerald-950/40 transition"></div>
+                        <button class="h-14 w-14 bg-amber-500 hover:bg-amber-450 text-emerald-950 rounded-full flex items-center justify-center shadow-lg transition transform group-hover:scale-105 z-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </button>
+                        <span class="absolute bottom-3 right-3 bg-stone-900/80 text-white text-[10px] font-bold px-2 py-1 rounded">08:45</span>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-bold text-stone-900">Havdalah Under the Stars</h4>
+                        <p class="text-xs text-stone-500 mt-1">Jewish Life Music Special Recording Session</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Brand Footer -->
+    <footer id="site-footer" class="bg-stone-900 text-stone-400 py-12 mt-12 border-t border-stone-800">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h4 class="text-lg font-serif font-bold text-amber-100 mb-3">Camp Simcha</h4>
+                <p class="text-sm max-w-sm text-stone-400">
+                    Transforming summer experiences through dynamic song, musical training, and visual storytelling media. Providing campers and counselors with permanent portal resources.
+                </p>
+            </div>
+            <div class="flex flex-col md:items-end justify-center">
+                <div class="text-sm text-stone-400 space-y-1">
+                    <p>© 2026 Camp Simcha Music & Media Department.</p>
+                    <p>Designed with zero Google Drive styling.</p>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <button onclick="switchTab('home')" class="text-xs text-amber-500 hover:underline">Home</button>
+                    <span class="text-stone-700">|</span>
+                    <button onclick="switchTab('chords')" class="text-xs text-amber-500 hover:underline">Chord Sheets</button>
+                    <span class="text-stone-700">|</span>
+                    <button onclick="openSongRequestModal()" class="text-xs text-amber-500 hover:underline">Request a Song</button>
+                    <span class="text-stone-700">|</span>
+                    <button onclick="openAdminPortal()" class="text-xs text-amber-500 hover:underline font-bold">Admin Portal</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==================================================== -->
+    <!-- 5. BRANDED MUSIC VIEWER MODE OVERLAY -->
+    <!-- ==================================================== -->
+    <div id="music-viewer" class="hidden fixed inset-0 bg-[#121212] z-[99999] flex flex-col overflow-hidden">
+        <!-- Viewer Top Bar -->
+        <header class="bg-emerald-950 text-amber-50 h-16 px-4 flex items-center justify-between shadow-md shrink-0 border-b border-amber-800/25">
+            <!-- Left Brand -->
+            <div class="flex items-center space-x-2">
+                <div class="bg-amber-500 text-emerald-950 p-1.5 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+                    </svg>
+                </div>
+                <span class="text-xs font-black tracking-widest uppercase text-amber-400 font-sans hidden sm:inline">Camp Simcha Portal</span>
+            </div>
+            
+            <!-- Center Title -->
+            <div class="text-center px-4 max-w-lg truncate flex-grow">
+                <h2 id="viewer-song-title" class="text-base sm:text-xl font-bold font-serif text-amber-100 truncate">Song Name</h2>
+            </div>
+            
+            <!-- Right Actions (Updated with Download + Close Actions) -->
+            <div class="flex items-center space-x-2">
+                <!-- Anchor tag disguised as a button pointing to the Google Drive Exporter directly -->
+                <a id="viewer-download-btn" href="#" target="_blank" download class="bg-emerald-900 hover:bg-emerald-800 text-amber-100 hover:text-white px-4 py-2 rounded-lg text-xs font-bold border border-emerald-800/60 transition flex items-center gap-1.5 shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download Sheet
+                </a>
+                <button onclick="window.close()" class="bg-amber-500 hover:bg-amber-450 text-emerald-950 px-4 py-2 rounded-lg text-xs font-extrabold transition shadow-sm">
+                    Close Sheet
+                </button>
+            </div>
+        </header>
+
+        <!-- Viewer Frame Workspace -->
+        <div class="flex-grow w-full relative bg-[#121212] flex justify-center">
+            <!-- Custom Loader within view -->
+            <div id="iframe-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-[#121212] text-stone-400 z-10">
+                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-amber-400 mb-3"></div>
+                <p class="text-xs tracking-wider uppercase font-semibold">Opening Chord Sheet securely...</p>
+            </div>
+
+            <!-- Visual Cover-Up: Fully covers the top-right corner of the Google Viewer to hide print, download, and pop-out controls -->
+            <div class="absolute top-0 right-0 w-[240px] h-[64px] bg-[#1a1a1a] z-50 pointer-events-auto select-none" id="viewer-iframe-shield"></div>
+
+            <!-- Raw sandbox-safe Google iframe wrapper (Centered and styled cleanly with deep dark charcoal backdrop) -->
+            <iframe id="viewer-iframe" class="w-full h-full border-none opacity-0 transition-opacity duration-300 bg-[#121212]" src="" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+        </div>
+    </div>
+
+    <!-- ==================================================== -->
+    <!-- 6. ADMIN PORTAL MODALS & SONG REQUESTS -->
+    <!-- ==================================================== -->
+    
+    <!-- Song Request Modal -->
+    <div id="song-request-modal" class="hidden fixed inset-0 bg-black/75 z-[100000] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-stone-900 border border-stone-800 rounded-2xl p-6 w-full max-w-md text-left shadow-2xl relative overflow-hidden transition-all duration-300">
+            <button onclick="closeSongRequestModal()" class="absolute top-4 right-4 text-stone-400 hover:text-white transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div id="request-icon-container" class="h-12 w-12 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+            </div>
+            <h3 id="request-modal-title" class="text-xl font-bold text-amber-100 font-serif mb-1">Request a Song Sheet</h3>
+            <p id="request-modal-desc" class="text-stone-400 text-xs mb-6">Need a song we don't have? Let us know, and we'll write or find it!</p>
+            
+            <div id="request-form-content" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Your Name</label>
+                        <input 
+                            type="text" 
+                            id="request-user-name"
+                            placeholder="Enter your name" 
+                            class="w-full px-3 py-2 bg-stone-800 text-white rounded-lg border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Your Email</label>
+                        <input 
+                            type="email" 
+                            id="request-user-email"
+                            placeholder="Enter your email" 
+                            class="w-full px-3 py-2 bg-stone-800 text-white rounded-lg border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                        />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Song Request Title</label>
+                        <input 
+                            type="text" 
+                            id="request-song-title"
+                            placeholder="e.g. Bilvavi, Tov Lehodot" 
+                            class="w-full px-3 py-2 bg-stone-800 text-white rounded-lg border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Artist Name <span class="text-stone-500 font-normal">(Optional)</span></label>
+                        <input 
+                            type="text" 
+                            id="request-song-artist"
+                            placeholder="e.g. Abie Rotenberg" 
+                            class="w-full px-3 py-2 bg-stone-800 text-white rounded-lg border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                        />
+                    </div>
+                </div>
+
+                <!-- Custom Optional File Uploaders -->
+                <div class="border-t border-stone-800 pt-4 mt-2 space-y-3">
+                    <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block">Optionally attach your own resources:</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-300 mb-1">Attach Chord Sheet (Optional)</label>
+                            <input 
+                                type="file" 
+                                id="request-chord-file"
+                                class="w-full text-xs text-stone-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[10px] file:font-semibold file:bg-stone-800 file:text-stone-200 hover:file:bg-stone-700 bg-stone-950 border border-stone-800 rounded-lg p-1"
+                                accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+                            />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-300 mb-1">Attach Recording (Optional)</label>
+                            <input 
+                                type="file" 
+                                id="request-audio-file"
+                                class="w-full text-xs text-stone-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[10px] file:font-semibold file:bg-stone-800 file:text-stone-200 hover:file:bg-stone-700 bg-stone-950 border border-stone-800 rounded-lg p-1"
+                                accept=".mp3,.m4a,.wav"
+                            />
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-stone-500">Max size 10MB total combined. Supported types: PDF, Doc, Image, MP3, WAV.</p>
+                </div>
+            </div>
+            
+            <div id="request-modal-footer" class="flex gap-2 mt-6">
+                <button onclick="closeSongRequestModal()" class="flex-1 py-2.5 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-lg text-xs font-semibold transition">
+                    Cancel
+                </button>
+                <button id="submit-request-btn" onclick="submitSongRequest()" class="flex-1 py-2.5 bg-amber-500 hover:bg-amber-450 text-emerald-950 rounded-lg text-xs font-bold transition shadow-md flex items-center justify-center">
+                    Submit Request
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Password Auth Modal -->
+    <div id="admin-auth-modal" class="hidden fixed inset-0 bg-black/75 z-[100000] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-stone-900 border border-stone-800 rounded-2xl p-6 w-full max-w-sm text-center shadow-2xl">
+            <div class="h-12 w-12 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-amber-100 font-serif mb-1">Admin Authentication</h3>
+            <p class="text-stone-400 text-xs mb-4">Access restricted to Jewish Life Music & Media Directors.</p>
+            
+            <input 
+                type="password" 
+                id="admin-password-input"
+                placeholder="Enter Admin Password" 
+                class="w-full px-3 py-2 bg-stone-800 text-white rounded-lg border border-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm mb-2 text-center"
+                onkeydown="if(event.key === 'Enter') submitAdminAuth()"
+            />
+            <p id="admin-auth-error" class="text-red-400 text-xs font-semibold mb-3 hidden">Incorrect Password. Please try again.</p>
+            
+            <div class="flex gap-2">
+                <button onclick="closeAdminAuth()" class="flex-1 py-2 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-lg text-xs font-semibold transition">
+                    Cancel
+                </button>
+                <button onclick="submitAdminAuth()" class="flex-1 py-2 bg-amber-500 hover:bg-amber-450 text-emerald-950 rounded-lg text-xs font-bold transition shadow-md">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Control Panel Modal -->
+    <div id="admin-panel-modal" class="hidden fixed inset-0 bg-black/75 z-[100000] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-stone-900 border border-stone-800 rounded-2xl p-8 w-full max-w-md text-center shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 opacity-5 text-white pointer-events-none">
+                <svg class="w-48 h-48" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+                </svg>
+            </div>
+
+            <div class="h-14 w-14 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-amber-100 font-serif mb-2">Director Control Panel</h3>
+            <p class="text-stone-400 text-sm mb-6 max-w-sm mx-auto">
+                Welcome, Admin. Use this space to direct edit, add, or organize files dynamically in your Google Drive folders.
+            </p>
+
+            <div class="space-y-3 mb-8">
+                <!-- Action Link to Google Drive Editor -->
+                <a id="admin-drive-link" href="#" target="_blank" class="w-full py-4 bg-emerald-900 hover:bg-emerald-800 text-amber-100 hover:text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition shadow-md border border-emerald-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    Edit Google Drive Folder
+                </a>
+                
+                <p class="text-[10px] text-stone-500 italic">
+                    Configure this edit URL dynamically on line 352 of your local code.
+                </p>
+            </div>
+
+            <div class="border-t border-stone-800 pt-6">
+                <button onclick="closeAdminPanel()" class="px-6 py-2 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-lg text-xs font-semibold transition">
+                    Log Out & Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Core Application State & Controllers -->
+    <script>
+        // ==========================================
+        // BACKEND CONFIGURATION
+        // ==========================================
+        // Paste your Google Apps Script Web App URL between the quotes below to link your Google Drive folder.
+        // Once pasted, the website will automatically fetch and display all your live files!
+        const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0agFW31DU3KVTfalnTRbF_1_K48COdLjEg_dgBf-No7XKqydX-Vnudxz5R8BTbVZqag/exec"; 
+
+        // ADMIN PORTAL SECURE PARAMETERS
+        const ADMIN_PASSWORD = "Max Pollak Music";
+        // Paste the direct edit link to your Google Drive chord sheet folder below!
+        const GOOGLE_DRIVE_EDIT_URL = "https://drive.google.com";
+        // Target email address for song requests
+        const REQUEST_TARGET_EMAIL = "maxpollakmusic@gmail.com";
+
+        // Fallback high-quality camp playlist shown only when the script URL above is empty.
+        // This ensures your site always looks complete, beautiful, and live to the public.
+        const DEFAULT_CAMP_SONGS = [
+            { name: "Bilvavi (In My Heart)", id: "default-1", url: "https://drive.google.com", tags: ["Slow", "Neshama"] },
+            { name: "Od Yavo Shalom Aleinu", id: "default-2", url: "https://drive.google.com", tags: ["Fast", "Simcha"] },
+            { name: "Acheinu Kol Beit Yisrael", id: "default-3", url: "https://drive.google.com", tags: ["Tehillim", "Slow"] },
+            { name: "Kol Ha'olam Kulo", id: "default-4", url: "https://drive.google.com", tags: ["Chassidish", "Classic"] },
+            { name: "Pitchu Li Shaarei Tzedek", id: "default-5", url: "https://drive.google.com", tags: ["Upbeat", "Hallel"] },
+            { name: "Shalom Aleichem (Camp Version)", id: "default-6", url: "https://drive.google.com", tags: ["Shabbat", "Harmonies"] },
+            { name: "Hamalach Hagoel", id: "default-7", url: "https://drive.google.com", tags: ["Slow", "Kavanah"] },
+            { name: "Tov Lehodot", id: "default-8", url: "https://drive.google.com", tags: ["Fast", "Hallel"] }
+        ];
+
+        // Active Application State variables
+        let activeTab = 'home';
+        let songDatabase = [];
+        let activeTagFilter = 'All';
+
+        // ==========================================
+        // SONG REQUEST CONTROLLERS
+        // ==========================================
+        function openSongRequestModal() {
+            // Restore modal elements to pristine state before rendering
+            document.getElementById('request-user-name').value = '';
+            document.getElementById('request-user-email').value = '';
+            document.getElementById('request-song-title').value = '';
+            document.getElementById('request-song-artist').value = '';
+            document.getElementById('request-chord-file').value = '';
+            document.getElementById('request-audio-file').value = '';
+            
+            document.getElementById('request-icon-container').className = "h-12 w-12 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mb-4";
+            document.getElementById('request-icon-container').innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+            `;
+            document.getElementById('request-modal-title').innerText = "Request a Song Sheet";
+            document.getElementById('request-modal-title').className = "text-xl font-bold text-amber-100 font-serif mb-1";
+            document.getElementById('request-modal-desc').innerText = "Need a song we don't have? Let us know, and we'll write or find it!";
+            document.getElementById('request-form-content').classList.remove('hidden');
+            document.getElementById('request-modal-footer').classList.remove('hidden');
+
+            const submitBtn = document.getElementById('submit-request-btn');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "Submit Request";
+
+            document.getElementById('song-request-modal').classList.remove('hidden');
+        }
+
+        function closeSongRequestModal() {
+            document.getElementById('song-request-modal').classList.add('hidden');
+        }
+
+        // Helper function to read file streams into Base64 formats asynchronously
+        function getBase64Data(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    const base64String = reader.result.split(',')[1];
+                    resolve({
+                        base64: base64String,
+                        name: file.name,
+                        type: file.type
+                    });
+                };
+                reader.onerror = error => resolve(null);
+            });
+        }
+
+        async function submitSongRequest() {
+            const userName = document.getElementById('request-user-name').value.trim();
+            const userEmail = document.getElementById('request-user-email').value.trim();
+            const songTitle = document.getElementById('request-song-title').value.trim();
+            const songArtist = document.getElementById('request-song-artist').value.trim();
+            
+            const chordFileInput = document.getElementById('request-chord-file');
+            const audioFileInput = document.getElementById('request-audio-file');
+
+            if (!userName || !userEmail || !songTitle) {
+                // Shake feedback validation helper
+                const modal = document.querySelector('#song-request-modal div');
+                modal.classList.add('animate-bounce');
+                setTimeout(() => modal.classList.remove('animate-bounce'), 500);
+                return;
+            }
+
+            // Verify both file sizes to prevent out-of-memory payload drop-outs
+            let totalBytes = 0;
+            if (chordFileInput.files[0]) totalBytes += chordFileInput.files[0].size;
+            if (audioFileInput.files[0]) totalBytes += audioFileInput.files[0].size;
+
+            if (totalBytes > 10 * 1024 * 1024) {
+                alert("The attached files exceed our 10MB limit. Please attach smaller documents.");
+                return;
+            }
+
+            const submitBtn = document.getElementById('submit-request-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-emerald-950 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Converting & Sending...
+            `;
+
+            // Prepare base64 conversions asynchronously
+            let chordFileObj = null;
+            let audioFileObj = null;
+
+            if (chordFileInput.files[0]) {
+                chordFileObj = await getBase64Data(chordFileInput.files[0]);
+            }
+            if (audioFileInput.files[0]) {
+                audioFileObj = await getBase64Data(audioFileInput.files[0]);
+            }
+
+            // If the script backend is unconfigured, fallback gracefully to a standard client window redirect
+            if (!GOOGLE_APPS_SCRIPT_URL || GOOGLE_APPS_SCRIPT_URL.trim() === "") {
+                const subject = `Camp Simcha Song Request: ${songTitle}`;
+                let emailBody = `Hi Max,\n\nI have a new song request for Jewish Life at Camp Simcha!\n\nName: ${userName}\nEmail: ${userEmail}\nSong Requested: ${songTitle}\nArtist: ${songArtist || "Not specified"}\n\nThank you!`;
+                window.location.href = `mailto:${REQUEST_TARGET_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+                
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Submit Request";
+                closeSongRequestModal();
+                return;
+            }
+
+            // Post the packet parameters securely to Google Apps Script backend
+            const payload = {
+                userName: userName,
+                userEmail: userEmail,
+                songTitle: songTitle,
+                songArtist: songArtist,
+                chordFile: chordFileObj,
+                audioFile: audioFileObj
+            };
+
+            fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors", // Disable CORS blockages for clean, redirect-friendly form post execution
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                // Display premium, dynamic success panel directly in the modal workspace without reloading or launching tabs
+                const iconContainer = document.getElementById('request-icon-container');
+                iconContainer.className = "h-12 w-12 bg-green-500/10 text-green-400 rounded-full flex items-center justify-center mb-4 transition-all duration-300 transform scale-110";
+                iconContainer.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                `;
+                
+                document.getElementById('request-modal-title').innerText = "Request Sent Successfully!";
+                document.getElementById('request-modal-title').className = "text-xl font-bold text-green-400 font-serif mb-1";
+                document.getElementById('request-modal-desc').innerText = "Your request and attachments have been sent to Max's inbox.";
+                
+                document.getElementById('request-form-content').classList.add('hidden');
+                document.getElementById('request-modal-footer').classList.add('hidden');
+
+                // Gracefully auto-close modal workspace after 2.2 seconds
+                setTimeout(() => {
+                    closeSongRequestModal();
+                }, 2200);
+            })
+            .catch(err => {
+                console.error("Error sending request:", err);
+                // Hard client-side mailto redirect fallbacks in case of physical internet timeout drops
+                const subject = `Camp Simcha Song Request: ${songTitle}`;
+                let emailBody = `Hi Max,\n\nI have a new song request for Jewish Life at Camp Simcha!\n\nName: ${userName}\nEmail: ${userEmail}\nSong Requested: ${songTitle}\nArtist: ${songArtist || "Not specified"}\n\nThank you!`;
+                window.location.href = `mailto:${REQUEST_TARGET_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+                
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Submit Request";
+                closeSongRequestModal();
+            });
+        }
+
+        // ==========================================
+        // ADMIN PORTAL CONTROLLERS
+        // ==========================================
+        function openAdminPortal() {
+            document.getElementById('admin-password-input').value = '';
+            document.getElementById('admin-auth-error').classList.add('hidden');
+            document.getElementById('admin-auth-modal').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('admin-password-input').focus();
+            }, 100);
+        }
+
+        function closeAdminAuth() {
+            document.getElementById('admin-auth-modal').classList.add('hidden');
+        }
+
+        function submitAdminAuth() {
+            const inputVal = document.getElementById('admin-password-input').value;
+            const errorText = document.getElementById('admin-auth-error');
+            
+            if (inputVal === ADMIN_PASSWORD) {
+                closeAdminAuth();
+                // Assign target edit folder link
+                document.getElementById('admin-drive-link').href = GOOGLE_DRIVE_EDIT_URL;
+                document.getElementById('admin-panel-modal').classList.remove('hidden');
+            } else {
+                errorText.classList.remove('hidden');
+                // Subtle feedback nudge animation
+                const modal = document.querySelector('#admin-auth-modal div');
+                modal.classList.add('animate-bounce');
+                setTimeout(() => modal.classList.remove('animate-bounce'), 500);
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('admin-panel-modal').classList.add('hidden');
+        }
+
+        // Listen for the Escape key to close the chord sheet viewer instantly
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' || event.keyCode === 27) {
+                const viewer = document.getElementById('music-viewer');
+                if (viewer && !viewer.classList.contains('hidden')) {
+                    window.close();
+                }
+            }
+        });
+
+        // Window Initialized Lifecycle Hook
+        window.onload = function() {
+            // Check if URL parameters exist (meaning this window is a Branded View Tab)
+            const urlParams = new URLSearchParams(window.location.search);
+            const viewerFile = urlParams.get('file');
+            const viewerName = urlParams.get('name');
+            const viewerUrl = urlParams.get('url');
+
+            if (viewerFile && viewerName && viewerUrl) {
+                initBrandedViewer(viewerName, viewerUrl, viewerFile);
+            } else {
+                // Otherwise, proceed to render the normal portal application
+                loadDatabase();
+            }
+        };
+
+        // Convert any standard Google Drive Link to a fully distraction-free preview link
+        function getCleanPreviewUrl(url) {
+            if (!url) return '';
+            
+            // Check if it's a standard document edit/view link
+            if (url.includes('docs.google.com/document')) {
+                const docIdMatch = url.match(/\/document\/d\/([a-zA-Z0-9-_]+)/);
+                if (docIdMatch) {
+                    // Convert Google Doc to Google Drive file preview format!
+                    // This forces Google to use its dark charcoal stage background, keeping it consistent with PDFs!
+                    return `https://drive.google.com/file/d/${docIdMatch[1]}/preview`;
+                }
+            }
+            
+            // Check if it's a standard drive file view link
+            if (url.includes('drive.google.com/file/d/')) {
+                return url.replace(/\/view(.*)/, '/preview').replace(/\/edit(.*)/, '/preview');
+            }
+            
+            // Check if it's an open ID link
+            const idMatch = url.match(/[?&]id=([a-zA-Z0-9-_]+)/);
+            if (idMatch && url.includes('drive.google.com')) {
+                return `https://drive.google.com/file/d/${idMatch[1]}/preview`;
+            }
+            
+            return url;
+        }
+
+        // Translates Google URLs into real-time direct export download streams for client devices
+        function getDirectDownloadUrl(id, url) {
+            if (!url) return '#';
+
+            // Google Docs can be beautifully downloaded directly as high-fidelity PDFs!
+            if (url.includes('docs.google.com/document')) {
+                const docIdMatch = url.match(/\/document\/d\/([a-zA-Z0-9-_]+)/);
+                if (docIdMatch) {
+                    return `https://docs.google.com/document/d/${docIdMatch[1]}/export?format=pdf`;
+                }
+            }
+
+            // Normal Google Drive Files (PDFs, Images) can use the raw file exporter
+            if (url.includes('drive.google.com/file/d/')) {
+                const fileIdMatch = url.match(/\/file\/d\/([a-zA-Z0-9-_]+)/);
+                if (fileIdMatch) {
+                    return `https://drive.google.com/uc?export=download&id=${fileIdMatch[1]}`;
+                }
+            }
+
+            // Fallback to absolute file ID if available
+            if (id && !id.startsWith('default')) {
+                return `https://drive.google.com/uc?export=download&id=${id}`;
+            }
+
+            return url; // Safe fallback return
+        }
+
+        // Initialize the beautiful Camp Simcha Music Viewer
+        function initBrandedViewer(songName, songUrl, songId) {
+            // Hide all standard layout panels completely
+            document.getElementById('site-header').classList.add('hidden');
+            document.getElementById('site-hero').classList.add('hidden');
+            document.getElementById('site-main').classList.add('hidden');
+            document.getElementById('site-footer').classList.add('hidden');
+            document.getElementById('main-body').className = "h-screen bg-[#121212] overflow-hidden flex flex-col";
+
+            // Reveal and configure the Custom Viewer Overlay
+            const viewerContainer = document.getElementById('music-viewer');
+            viewerContainer.classList.remove('hidden');
+
+            const decodedName = decodeURIComponent(songName);
+            const decodedUrl = decodeURIComponent(songUrl);
+            document.getElementById('viewer-song-title').innerText = decodedName;
+            document.title = decodedName + " — Camp Simcha Music Portal";
+
+            // Map the Direct File download pipeline to the Action Button
+            const downloadBtn = document.getElementById('viewer-download-btn');
+            downloadBtn.href = getDirectDownloadUrl(songId, decodedUrl);
+
+            // Programmatically assign the load event listener to prevent Referencing errors during race conditions
+            const iframe = document.getElementById('viewer-iframe');
+            iframe.addEventListener('load', hideIframeLoader);
+            iframe.src = getCleanPreviewUrl(decodedUrl);
+            
+            // Explicitly focus the parent window context to capture early key inputs (Esc)
+            window.focus();
+            document.body.focus();
+        }
+
+        // Hide iframe loader when source finishes streaming
+        function hideIframeLoader() {
+            document.getElementById('iframe-loader').classList.add('hidden');
+            document.getElementById('viewer-iframe').className = "w-full h-full border-none opacity-100 transition-opacity duration-300 bg-[#121212]";
+            
+            // Re-bind focus to parent window to capture Escape keys smoothly after load completion
+            window.focus();
+        }
+
+        // Opens the song viewer tab dynamically passing necessary encoded attributes
+        function openSongViewer(songId) {
+            const song = songDatabase.find(s => s.id === songId);
+            if (!song) return;
+
+            // Generate clean viewer path pointing to ourselves with metadata parameters
+            const viewerPath = window.location.pathname + 
+                '?file=' + encodeURIComponent(song.id) + 
+                '&name=' + encodeURIComponent(song.name) + 
+                '&url=' + encodeURIComponent(song.url);
+            
+            window.open(viewerPath, '_blank');
+        }
+
+        // Pull Google Drive files or use beautiful default fallback list (Alphabetized by Name)
+        function loadDatabase() {
+            const loadingIndicator = document.getElementById('chords-loading');
+            
+            if (GOOGLE_APPS_SCRIPT_URL && GOOGLE_APPS_SCRIPT_URL.trim() !== "") {
+                loadingIndicator.classList.remove('hidden');
+                loadingIndicator.classList.add('flex');
+                
+                // Fetch dynamic file elements
+                fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    }
+                })
+                    .then(res => {
+                        if (!res.ok) throw new Error("Connection failed");
+                        return res.json();
+                    })
+                    .then(data => {
+                        if (!data || data.length === 0) {
+                            throw new Error("No files returned");
+                        }
+                        const loadedSongs = data.map(file => {
+                            // Clean extension tags (.pdf, .docx, etc.)
+                            const cleanName = file.name.replace(/\.[^/.]+$/, "");
+                            
+                            // ==========================================
+                            // ROBUST MULTI-TAG PARSER
+                            // ==========================================
+                            // Scans the filename for all bracket groups, e.g. [Slow][Shabbat] or [Slow, Shabbat]
+                            const bracketMatches = [...cleanName.matchAll(/\[(.*?)\]/g)];
+                            let tags = [];
+                            if (bracketMatches.length > 0) {
+                                bracketMatches.forEach(match => {
+                                    // Split by comma within any brackets, trim whitespace, remove empty tags
+                                    const splitTags = match[1].split(',')
+                                        .map(t => t.trim())
+                                        .filter(t => t.length > 0);
+                                    tags = tags.concat(splitTags);
+                                });
+                            } else {
+                                tags = ["No Tag"];
+                            }
+                            
+                            // Extract clean display name by stripping out all bracket sections cleanly
+                            const displayName = cleanName.replace(/\[.*?\]/g, "").replace(/\s+/g, " ").trim();
+
+                            return {
+                                id: file.id,
+                                name: displayName,
+                                url: file.url,
+                                tags: tags
+                            };
+                        });
+
+                        // Sort the live Google Drive database array alphabetically by name
+                        songDatabase = loadedSongs.sort((a, b) => a.name.localeCompare(b.name));
+
+                        loadingIndicator.classList.remove('flex');
+                        loadingIndicator.classList.add('hidden');
+                        renderPills();
+                        filterSongs();
+                    })
+                    .catch(err => {
+                        console.warn("Direct live load paused or blocked locally. Falling back to default playlist:", err);
+                        // Sort the fallback default list alphabetically by name
+                        songDatabase = [...DEFAULT_CAMP_SONGS].sort((a, b) => a.name.localeCompare(b.name));
+                        loadingIndicator.classList.remove('flex');
+                        loadingIndicator.classList.add('hidden');
+                        renderPills();
+                        filterSongs();
+                    });
+            } else {
+                // Instantly load preset mock list sorted alphabetically by name
+                songDatabase = [...DEFAULT_CAMP_SONGS].sort((a, b) => a.name.localeCompare(b.name));
+                renderPills();
+                filterSongs();
+            }
+        }
+
+        // Navigation Controller
+        function switchTab(tabName) {
+            activeTab = tabName;
+            
+            // Hide all tab screens
+            document.getElementById('tab-content-home').classList.add('hidden');
+            document.getElementById('tab-content-chords').classList.add('hidden');
+            document.getElementById('tab-content-recordings').classList.add('hidden');
+            document.getElementById('tab-content-slideshows').classList.add('hidden');
+            
+            // Show selected tab screen
+            document.getElementById(`tab-content-${tabName}`).classList.remove('hidden');
+            if (tabName === 'home') document.getElementById('tab-content-home').classList.add('block');
+
+            // Manage navigation active tab buttons visual styling
+            const tabs = ['home', 'chords', 'recordings', 'slideshows'];
+            tabs.forEach(t => {
+                const button = document.getElementById(`nav-${t}`);
+                if (t === tabName) {
+                    button.className = "px-4 py-2 rounded-lg transition-all duration-200 font-medium bg-amber-500 text-emerald-950 font-bold shadow-sm";
+                } else {
+                    button.className = "px-4 py-2 rounded-lg transition-all duration-200 font-medium hover:bg-emerald-900 text-stone-200";
+                }
+            });
+
+            // Adjust the Hero Section content dynamically depending on selected tab
+            const heroTitle = document.getElementById('hero-title');
+            const heroDesc = document.getElementById('hero-desc');
+            const heroSection = document.getElementById('site-hero');
+
+            if (tabName === 'home') {
+                heroSection.className = "bg-gradient-to-br from-emerald-950 via-emerald-900 to-amber-950 text-white relative overflow-hidden py-16 transition-all duration-300";
+                heroTitle.innerText = "Sing. Record. Remember.";
+                heroDesc.innerText = "Access the core resource portal for Jewish Life at Camp Simcha. Find dynamic chord sheets, listen to recorded tracks, and relive the magic of past summers.";
+            } else if (tabName === 'chords') {
+                heroSection.className = "bg-gradient-to-br from-emerald-950 via-emerald-900 to-amber-950 text-white relative overflow-hidden py-8 transition-all duration-300";
+                heroTitle.innerText = "Camp Chord Sheets";
+                heroDesc.innerText = "Instantly search and access custom chord sheets. Click any song to load its Google Drive sheet template in a new window.";
+            } else if (tabName === 'recordings') {
+                heroSection.className = "bg-gradient-to-br from-emerald-950 via-emerald-900 to-amber-950 text-white relative overflow-hidden py-8 transition-all duration-300";
+                heroTitle.innerText = "Official Song Recordings";
+                heroDesc.innerText = "Browse and listen to high-quality recordings, campsite sing-alongs, and acoustic studio sessions.";
+            } else if (tabName === 'slideshows') {
+                heroSection.className = "bg-gradient-to-br from-emerald-950 via-emerald-900 to-amber-950 text-white relative overflow-hidden py-8 transition-all duration-300";
+                heroTitle.innerText = "Past Camp Slideshows";
+                heroDesc.innerText = "Take a trip down memory lane with video summaries, session wrap-ups, and special camp productions.";
+            }
+        }
+
+        // Run home quick search widget trigger
+        function executeQuickSearch() {
+            const query = document.getElementById('quick-search-input').value;
+            document.getElementById('main-search-input').value = query;
+            switchTab('chords');
+            filterSongs();
+        }
+
+        // Generate tags list buttons dynamic pills
+        function renderPills() {
+            const tagsSet = new Set();
+            songDatabase.forEach(song => {
+                if (song.tags) {
+                    song.tags.forEach(tag => tagsSet.add(tag));
+                }
+            });
+
+            const uniqueTags = ['All', ...Array.from(tagsSet)];
+            const pillsContainer = document.getElementById('tag-pills-container');
+            pillsContainer.innerHTML = '';
+
+            uniqueTags.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.innerText = tag;
+                btn.className = `px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+                    activeTagFilter === tag ? 'bg-emerald-900 text-white shadow-sm' : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                }`;
+                btn.onclick = function() {
+                    activeTagFilter = tag;
+                    renderPills();
+                    filterSongs();
+                };
+                pillsContainer.appendChild(btn);
+            });
+        }
+
+        // Filtering engine based on search strings and tags
+        function filterSongs() {
+            const searchVal = document.getElementById('main-search-input').value.toLowerCase();
+            const grid = document.getElementById('chords-grid');
+            const noResults = document.getElementById('no-results');
+            
+            grid.innerHTML = '';
+
+            const filtered = songDatabase.filter(song => {
+                const matchesSearch = song.name.toLowerCase().includes(searchVal) || 
+                                      song.tags.some(t => t.toLowerCase().includes(searchVal));
+                const matchesTag = activeTagFilter === 'All' || song.tags.includes(activeTagFilter);
+                return matchesSearch && matchesTag;
+            });
+
+            if (filtered.length > 0) {
+                noResults.classList.add('hidden');
+                filtered.forEach(song => {
+                    const card = document.createElement('div');
+                    card.onclick = function() { openSongViewer(song.id); };
+                    card.className = "group bg-white border border-stone-200/80 rounded-2xl p-5 hover:border-amber-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between cursor-pointer";
+
+                    // Create card body elements
+                    let tagsHTML = '';
+                    song.tags.forEach(tag => {
+                        tagsHTML += `<span class="bg-emerald-50 text-emerald-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">${tag}</span>`;
+                    });
+
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="bg-amber-100 text-amber-900 p-2.5 rounded-xl group-hover:bg-amber-200 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+                                    </svg>
+                                </div>
+                                <span class="text-stone-400 group-hover:text-emerald-950 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <h4 class="text-lg font-bold text-stone-900 group-hover:text-emerald-950 transition-colors mb-2">
+                                ${song.name}
+                            </h4>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-stone-100 flex flex-wrap gap-1.5">
+                            ${tagsHTML}
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } else {
+                noResults.classList.remove('hidden');
+            }
+        }
+
+        // Reset searching controls
+        function clearFilters() {
+            document.getElementById('main-search-input').value = '';
+            activeTagFilter = 'All';
+            renderPills();
+            filterSongs();
+        }
+    </script>
+</body>
+</html>
